@@ -1,0 +1,33 @@
+#contenedorProductos{
+    display: flex;
+    flex-wrap: wrap;
+    border: red 2px solid;
+}
+.tarjetaProducto{
+    border: solid black 1px;
+    margin: 2px;
+}
+img{
+    height: 200px;
+}
+.tarjetaProducto h3{
+    background-color: white;
+}
+#contenedorCarrito{
+    border: 2px solid black;
+    width: 100%;
+    min-height: 100px;
+}
+.tarjetaProductoCarrito{
+    display: flex;
+    justify-content: space-between;
+}
+
+#hermosoEstilo{
+    height: 200px;
+    width: 200px;
+    border: 5px solid orangered;
+}
+.oculto{
+    display: none !important;
+}
