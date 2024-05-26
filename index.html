@@ -1,22 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/estilo.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="./CSS/estilo.css">
+    <title>Joyeria</title>
 </head>
+
 <body>
-    <h1>Joyas</h1>
-    <input id="inputBusqueda" placeholder="Buscar por nombre">
-    <button id="botonBuscar">Buscar</button>
-    <button id="botonVerOcultar">VER CARRITO</button>
+    <div class="container">
+        <header class="header">
+            <div class="container-fluid">
+                <nav class="nabarU navbar navbar-expand-lg">
+                    <a href="../index.html"><img id="arriba" class="portada" src="./img/e7010d02-43e0-444f-b811-3361e353f16a.jpg" alt=""></a>
+                    <div class="botoneraU">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>                        
+                    
+                    </div>
+                </nav>
+            </div>  
+        </header>
+        <main class="main">
+        <input class="btn" id="inputBusqueda" placeholder="Buscar por nombre">
+        <button id="botonBuscar">Buscar</button>
+        <button id="botonComprar">Comprar</button>
+        <button id="botonVerOcultar">VER CARRITO</button>
 
-    <div id="contenedorProductos"></div>
-    <div class="oculto" id="contenedorCarrito"></div>
-    <button id="botonComprar">Comprar</button>
-    
-
+        <div id="contenedorProductos"></div>
+        <div class="oculto" id="contenedorCarrito"></div>
+        
+        </main>
+        <footer class="footer">
+            <div class="seccionU">
+                <h5><a href="./pages/Nosotros.html">Nosotros</a></h5>
+                <h5>Siguenos:<a href="http://www.instagram.com" target="_blank"><img class="ins"
+                src="./img/instagram.png" alt="logo instagram"></a></h5>
+            </div>
+            <div class="seccionD">
+                <h5>Envios a todo Chile</h5>
+                <h5><a href="#arriba">Subir</a></h5>
+            </div>
+            <div class="seccionT">
+                <h5>Escribenos:</h5>
+                <h5>llamanos: +56994573135</h5>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./script.js"></script>
 </body>
+
 </html>

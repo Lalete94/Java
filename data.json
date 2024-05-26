@@ -1,0 +1,138 @@
+[
+    {
+        "id": 1,
+        "nombre": "Ear cuff",
+        "categoria": "aros",
+        "stock": 2,
+        "precio": 12000,
+        "rutaImagen": "Aros1.jpeg"
+    },
+    {
+        "id": 2,
+        "nombre": "Esfera ovalo",
+        "categoria": "aros",
+        "stock": 7,
+        "precio": 10000,
+        "rutaImagen": "Aros2.jpeg"
+    },
+    {
+        "id": 3,
+        "nombre": "Lluvia cristales",
+        "categoria": "collares",
+        "stock": 4,
+        "precio": 15000,
+        "rutaImagen": "Collar1.jpeg"
+    },
+    {
+        "id": 4,
+        "nombre": "Gucci marina",
+        "categoria": "collares",
+        "stock": 1,
+        "precio": 14000,
+        "rutaImagen": "Collar2.jpeg"
+    },
+    {
+        "id": 5,
+        "nombre": "Infinito",
+        "categoria": "pulseras",
+        "stock": 3,
+        "precio": 7000,
+        "rutaImagen": "Pulsera1.jpeg"
+    },
+    {
+        "id": 6,
+        "nombre": "Estrellas circones",
+        "categoria": "pulseras",
+        "stock": 8,
+        "precio": 9000,
+        "rutaImagen": "Pulsera2.jpeg"
+    },
+    {
+        "id": 7,
+        "nombre": "Semi argolla eslavones corazon",
+        "categoria": "aros",
+        "stock": 7,
+        "precio": 17000,
+        "rutaImagen": "Aros3.jpeg"
+    },
+    {
+        "id": 8,
+        "nombre": "Trepador de estrellas",
+        "categoria": "aros",
+        "stock": 2,
+        "precio": 12000,
+        "rutaImagen": "Aros4o.jpeg"
+    },
+    {
+        "id": 9,
+        "nombre": "Estrella media luna",
+        "categoria": "collares",
+        "stock": 7,
+        "precio": 10000,
+        "rutaImagen": "Collar9.jpeg"
+    },
+    {
+        "id": 10,
+        "nombre": "Corazones",
+        "categoria": "pulseras",
+        "stock": 4,
+        "precio": 15000,
+        "rutaImagen": "Pulsera3.jpeg"
+    },
+    {
+        "id": 11,
+        "nombre": "Luna invertida",
+        "categoria": "pulseras",
+        "stock": 1,
+        "precio": 14000,
+        "rutaImagen": "Pulsera4.jpeg"
+    },
+    {
+        "id": 12,
+        "nombre": "Planeta estrella fugaz",
+        "categoria": "collares",
+        "stock": 3,
+        "precio": 7000,
+        "rutaImagen": "Collar5.jpeg"
+    },
+    {
+        "id": 13,
+        "nombre": "Infinito corazon",
+        "categoria": "collares",
+        "stock": 8,
+        "precio": 9000,
+        "rutaImagen": "Collar6.jpeg"
+    },
+    {
+        "id": 14,
+        "nombre": "Rayo",
+        "categoria": "aros",
+        "stock": 7,
+        "precio": 17000,
+        "rutaImagen": "Aros8.jpeg"
+    },
+    {
+        "id": 15,
+        "nombre": "Flor de loto",
+        "categoria": "aros",
+        "stock": 2,
+        "precio": 12000,
+        "rutaImagen": "Aros13.jpeg"
+    },
+    {
+        "id": 16,
+        "nombre": "Veneciana con esferas",
+        "categoria": "collares",
+        "stock": 7,
+        "precio": 10000,
+        "rutaImagen": "Collar8.jpeg"
+    },
+    {
+        "id": 17,
+        "nombre": "Cartier",
+        "categoria": "collares",
+        "stock": 4,
+        "precio": 15000,
+        "rutaImagen": "Collar7.jpeg"
+    }
+]
