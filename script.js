@@ -1,15 +1,21 @@
 const obtenerCarritoLS = () => JSON.parse(localStorage.getItem("carrito")) || []
 
-
+principal()
 
 async function principal(){ 
-    
+
     const response = await fetch("./data.json")
     const productos = await response.json()
-        renderizarCarrito()
+    const express = require("express");
+    const app = express();
+    const port = 3000;
+    const cors = require("cors")
+    app.use(cors());
+    
+    renderizarCarrito()
 
     let botonBuscar = document.getElementById("botonBuscar")
-    botonBuscar.addEventListener("click",() => filtrarYRenderizarEnter(productos, e))
+    botonBuscar.addEventListener("click",() => filtrarYRenderizarEnter(productos))
     
     let inputBusqueda = document.getElementById("inputBusqueda")
     inputBusqueda.addEventListener ("keypress",(e) => filtrarYRenderizarEnter(productos, e))
@@ -21,34 +27,38 @@ async function principal(){
 
     let botonComprar = document.getElementById("botonComprar")
     botonComprar.addEventListener("click", finalizarCompra)
+
+    let botonesFiltros = document.getElementsByClassName("botonFiltro")
+    for (const botonFiltro of botonesFiltros) {
+        botonFiltro.addEventListener("click", (e) => filtrarYRenderizarPorCateoria(e, productos))        
+    }
+}
+
+function filtrarYRenderizarPorCateoria(e, productos) {
+    let value = e.target.value
+    let productosFiltrados = productos.filter(producto => producto.categoria === value)
+    renderizarProductos(productosFiltrados.length > 0 ? productosFiltrados : productos)
 }
 
 function verOcultar(e) {
-    let contenedorCarrito =document.getElementById("contenedorCarrito")
-    let contenedorProductos =document.getElementById("contenedorProductos")
+    let contenedorCarrito = document.getElementById("contenedorCarrito")
+    let contenedorProductos = document.getElementById("contenedorProductos")
 
     contenedorCarrito.classList.toggle("oculto")
     contenedorProductos.classList.toggle("oculto")
 
-    e.target.innerText = e.target.innerText ==="VER CARRITO"  ? "VER PRODUCTOS" : "VER CARRITO"
-}
-function obtenerCarritoLS() {
-
-    let carritoLS = JSON.parse(localStorage.getItem("carrito"))
-
-    carrito = carritoLS ? carritoLS : []
-    return carrito
+    e.target.innerText = e?.target?.innerText === "VER CARRITO"  ? "VER PRODUCTOS" : "VER CARRITO"
 }
 
 function finalizarCompra() {
+    lanzarAlerta("Gracias por su compra", "", "info", 5000)
+
     localStorage.removeItem("carrito")
     renderizarCarrito([])
 }
+
 function filtrarYRenderizarEnter(productos, e){
-    if(e.keyCode === 13){
-        let productosFiltrados = filtrarProductos(productos)
-        renderizarProductos(productosFiltrados)  
-    }
+    e.keycode === 13 && renderizarProductos(filtrarProductos(productos))
 }
 
 function filtrarYRenderizar(productos){
@@ -66,22 +76,22 @@ function renderizarProductos(productos)   {
     let contenedorProductos = document.getElementById("contenedorProductos")
     contenedorProductos.innerHTML = ""
 
-    productos.forEach(producto => {
+    productos.forEach(({nombre, rutaImagen, precio, stock, id}) => {
         let tarjetaProducto = document.createElement("div")
         tarjetaProducto.className = "tarjetaProducto"
         
         tarjetaProducto.innerHTML = `
-        <h3>${producto.nombre}</h3>
-        <img src="./img/${producto.rutaImagen}"/>
-        <h4>Precio: ${producto.precio}</h4>
-        <p>Stock: ${producto.stock}</p>
-        <button id=botonCarrito${producto.id}>Agregar al carrito</button>
+        <h3>${nombre}</h3>
+        <img src="./img/${rutaImagen}"/>
+        <h4>Precio: ${precio}</h4>
+        <p>Stock: ${stock || "Sin Unidades"}</p>
+        <button id=botonCarrito${id}>Agregar al carrito</button>
         `
         contenedorProductos.appendChild(tarjetaProducto)                       //-----------------------------------------------
 
-        let botonAgregarAlCarrito = document.getElementById("botonCarrito" + producto.id)
+        let botonAgregarAlCarrito = document.getElementById("botonCarrito" + id)
         botonAgregarAlCarrito.addEventListener("click", (e) => agregarProductoAlCarrito(e, productos))
-    });
+    })
 }
 
 function agregarProductoAlCarrito(e, productos){
@@ -123,7 +133,7 @@ function renderizarCarrito(){
             <p>${producto.unidades}</p>
             <button id=inc${producto.id}>+<button>
         </div>
-        <p>${producto.unidades}</p>
+
         <p>${producto.subtotal}</p>
         <button id=eliminar${producto.id}>ELIMINAR</button>
         `
@@ -139,9 +149,7 @@ function renderizarCarrito(){
                 confirmButtonText: 'Si'
             })
         }
-        
-        let botonIncUnidad = document.getElementById("inc" + producto.id)
-        botonIncUnidad.addEventListener("click", incrementarUnidad) 
+
 
         let botonEliminar = document.getElementById("eliminar" + producto.id)
         botonEliminar.addEventListener("click", eliminarProductoDelCarrito)
@@ -152,22 +160,16 @@ function decrementarUnidad(e){
     let carrito = obtenerCarritoLS()
     let id = Number(e.target.id.substring(3))
     let posProdEnCarrito = carrito.findIndex(producto => producto.id === id)
+    
+
+    if(carrito[posProdEnCarrito].unidades === 1){
+        e.target.parentElement.parentElement.remove()
+    }
     carrito[posProdEnCarrito].unidades--
     carrito[posProdEnCarrito].subtotal = carrito[posProdEnCarrito].unidades * carrito[posProdEnCarrito].precioUnitario
     localStorage.setItem("carrito", JSON.stringify(carrito))
     renderizarCarrito()
 }
-
-function incrementarUnidad(e){
-    let carrito = obtenerCarritoLS()
-    let id = Number(e.target.id.substring(3))
-    let posProdEnCarrito = carrito.findIndex(producto => producto.id === id)
-    carrito[posProdEnCarrito].unidades++
-    carrito[posProdEnCarrito].subtotal = carrito[posProdEnCarrito].unidades * carrito[posProdEnCarrito].precioUnitario
-    localStorage.setItem("carrito", JSON.stringify(carrito))
-    renderizarCarrito()
-}
-
 function eliminarProductoDelCarrito(e){
     let carrito = obtenerCarritoLS()
     let id = Number(e.target.id.substring(8))
@@ -175,11 +177,11 @@ function eliminarProductoDelCarrito(e){
     localStorage.setItem("carrito", JSON.stringify(carrito))
     e.target.parentElement.remove()
 }
-async function info(){
+async function pedirnfo(){
     return new Promise()
         fetch("./data.json")
         .then(response => response.json())
         .then(productos => {
             return productos
         })
-    } 
+    }  
